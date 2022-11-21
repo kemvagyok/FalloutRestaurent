@@ -1,0 +1,7 @@
+Garnélarák 10
+Hagyma 20
+Krumpli 20
+Hús 10
+Lekvár 10
+Liszt 5
+Cukor 50

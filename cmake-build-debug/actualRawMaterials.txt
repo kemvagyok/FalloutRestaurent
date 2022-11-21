@@ -1,0 +1,12 @@
+Hagyma 200
+Krumpli 400
+Hús 2000
+Lekvár 400
+Liszt 5000
+Cukor 300
+Mogyoróvaj 400
+Kenyér 4000
+Paradicsom 100
+Kagyló 1000
+Sajt 200
+Garnélarák 20000

@@ -1,0 +1,17 @@
+1 Menük 
+2 Napi
+3 Megtekintés MDS#0
+3 Módosítás
+4 Előétel MDM#1
+4 Főétel MDM#2
+4 Sütemény MDM#3
+4 Ár MDM#4
+2 Heti 
+3 Megtekintés MWS#0
+3 Módosítás
+4 Előétel MWM#1
+4 Főétel MWM#2
+4 Sütemény MWM#3
+4 Ár MWM#4
+1 Bevétel	
+2 Megtekintés PM#0

@@ -1,0 +1,7 @@
+1 Asztalokmegtekintése DS#0
+1 Asztalelérthetősége
+2 Melyikasztal? DW#0
+1 Asztalkezelése
+2 Lefoglalása DR#0
+2 Felszabadítás DF#0
+1 Számlakinyomtatása OW#0

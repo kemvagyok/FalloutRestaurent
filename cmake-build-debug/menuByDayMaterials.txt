@@ -1,0 +1,6 @@
+Mogyoróvaj 5
+Kenyér 4
+Paradicsom 10
+Kagyló 100
+Liszt 500
+Sajt 10
