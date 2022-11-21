@@ -10,14 +10,12 @@ void desktopReservation(DesktopArray* desktopArray, int ID, int countDayMenu, in
             desktopArray->desktops[ID].available = busy;
             desktopArray->desktops[ID].countOrderDayMenu=countDayMenu;
             desktopArray->desktops[ID].countOrderWeekMenu=countWeekMenu;
-            desktopArray->desktops[ID].costSummary = countDayMenu*countDayMenu+countWeekMenu*costWeekMenu;
+            desktopArray->desktops[ID].costSummary = ( countDayMenu * costDayMenu ) + ( countWeekMenu * costWeekMenu );
             printf("Sikeres lefoglalás.\n");
             return;
         }
     }
     printf("NINCS TALÁLAT\n");
-    return;
-
 }
 void desktopFree(DesktopArray* desktopArray, int ID)
 {
@@ -27,9 +25,9 @@ void desktopFree(DesktopArray* desktopArray, int ID)
             if(desktopArray->desktops[ID].available != empty)
             {
                 desktopArray->desktops[ID].available = empty;
-                desktopArray->desktops[ID].countOrderDayMenu = NULL;
-                desktopArray->desktops[ID].countOrderWeekMenu = NULL;
-                printf("Sikeres felszabadítás."\n);
+                desktopArray->desktops[ID].countOrderDayMenu = -1;
+                desktopArray->desktops[ID].countOrderWeekMenu = -1;
+                printf("Sikeres felszabadítás.\n");
                 return;
             }
             else
@@ -48,7 +46,7 @@ int chairCountOfGivenDesktop(DesktopArray* desktopArray, int ID)
             return desktopArray->desktops[ID].chairCount;
     }
     printf("NINCS TALÁLAT\n");
-    return  NULL;
+    return -1;
 }
 
 bool isEmptyChosenDesktop(DesktopArray* desktopArray, int ID)

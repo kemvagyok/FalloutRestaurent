@@ -90,7 +90,7 @@ DataProceeds getDataProfit(char *filename);
 
 void saveFoodMenus(FoodMenus* const foodMenus, char const *filenameDay, char const *filenameWeek,char const *filenameDayMaterials, char const *filenameWeekMaterials);
 
-void saveDesktops(DesktopArray const *desktopArray, char *filename);
+//void saveDesktops(DesktopArray const *desktopArray, char *filename);
 
 void saveRawMaterials(RawMaterialArray* rawMaterialArray, char *filename);
 

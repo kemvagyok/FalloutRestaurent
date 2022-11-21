@@ -1,10 +1,4 @@
-Kiszeny贸 mogyor贸vajjal
-Paradicsomleves, kagyl贸h煤s nokedli k枚rettel
+Hagyma krumpival
+Paradicsomleves, kagyl骽鷖 nokedli k鰎ettel
 Sajttorta
-2500
-Mogyor贸vaj 500 5
-Keny茅r 250 4
-Paradicsom 100 10
-Kagyl贸 10 100
-Liszt 5 500
-Sajt 250 10
+5000000

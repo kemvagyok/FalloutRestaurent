@@ -5,9 +5,10 @@
 
 void menuModifyAtFood(FoodMenu* foodMenu,MenuPart menuPart, char* text)
 {
+    text = strcat(text,"\n");
     switch (menuPart) {
         case Appetizer:
-            strcpy(foodMenu->appetizer,text);
+            strcpy(foodMenu->appetizer, text);
             break;
         case MainCourse:
             strcpy(foodMenu->mainCourse,text);

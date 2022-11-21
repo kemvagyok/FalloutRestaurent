@@ -2,9 +2,3 @@ Kiszenyó mogyoróvajjal
 Paradicsomleves, kagylóhús nokedli körettel
 Sajttorta
 2500
-Mogyoróvaj 500 5
-Kenyér 250 4
-Paradicsom 100 10
-Kagyló 10 100
-Liszt 5 500
-Sajt 250 10

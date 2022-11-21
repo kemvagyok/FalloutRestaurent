@@ -217,22 +217,21 @@ void saveFoodMenus(FoodMenus* const foodMenus, char const *filenameDay, char con
     FILE* fpDay = fopen(filenameDay, "w");
     FILE* fpWeek = fopen(filenameWeek,"w");
 
-    fprintf( fpDay,"%s\n", foodMenus->DayMenu.appetizer);
-    fprintf(fpDay, "%s\n", foodMenus->DayMenu.mainCourse);
-    fprintf(fpDay, "%s\n", foodMenus->DayMenu.cake);
-    fprintf(fpDay, "%d\n", foodMenus->WeekMenu.cost);
+    fprintf( fpDay,"%s", foodMenus->DayMenu.appetizer);
+    fprintf(fpDay, "%s", foodMenus->DayMenu.mainCourse);
+    fprintf(fpDay, "%s", foodMenus->DayMenu.cake);
+    fprintf(fpDay, "%d", foodMenus->DayMenu.cost);
+    fclose(fpDay);
     saveRawMaterials(&foodMenus->DayMenu.rawMaterialArray, filenameDayMaterials);
 
-    fprintf(fpWeek, "%s\n", foodMenus->WeekMenu.appetizer);
-    fprintf(fpWeek, "%s\n", foodMenus->WeekMenu.mainCourse);
-    fprintf(fpWeek, "%s\n", foodMenus->WeekMenu.cake);
-    fprintf(fpWeek, "%d\n", foodMenus->WeekMenu.cost);
-    saveRawMaterials(&foodMenus->WeekMenu.rawMaterialArray, filenameWeekMaterials);
-
-    fclose(fpDay);
+    fprintf(fpWeek, "%s", foodMenus->WeekMenu.appetizer);
+    fprintf(fpWeek, "%s", foodMenus->WeekMenu.mainCourse);
+    fprintf(fpWeek, "%s", foodMenus->WeekMenu.cake);
+    fprintf(fpWeek, "%d", foodMenus->WeekMenu.cost);
     fclose(fpWeek);
+    saveRawMaterials(&foodMenus->WeekMenu.rawMaterialArray, filenameWeekMaterials);
 }
-
+/**
 void saveDesktops(DesktopArray const *desktopArray, char *filename)
 {
     FILE* fp = fopen(filename, "w");
@@ -244,13 +243,14 @@ void saveDesktops(DesktopArray const *desktopArray, char *filename)
     fclose(fp);
     
 }
-
+**/
 void saveRawMaterials(RawMaterialArray* rawMaterialArray, char *filename)
 {
     FILE* fp = fopen(filename, "w");
 
-    for (int i = 0; i < rawMaterialArray->count; ++i)
+    for (int i = 0; i < rawMaterialArray->count-1; ++i)
         fprintf(fp,"%s %d\n", rawMaterialArray->rawMaterials[i].name, rawMaterialArray->rawMaterials[i].quantity);
+    fprintf(fp,"%s %d", rawMaterialArray->rawMaterials[rawMaterialArray->count-1].name, rawMaterialArray->rawMaterials[rawMaterialArray->count-1].quantity);
 
     fclose(fp);
 }
@@ -266,10 +266,15 @@ void saveDataProfit(DataProceeds const *dataProceeds, char const *filename)
 
 static void freeMenu(Menu* menu)
 {
-    for (int i = 0; i < menu->countSubmenus; ++i)
-        freeMenu(menu->submenus[i]);
-    if(menu->countSubmenus == 0 && menu->level != 0)
-        free(menu);
+        for (int i = 0; i < menu->countSubmenus; ++i)
+        {
+            if(menu->submenus[i]->countSubmenus>0)
+                freeMenu(menu->submenus[i]);
+            free(menu->submenus[i]);
+        }
+        free(menu->submenus);
+
+
 }
 
 static void freeFoodMenus(FoodMenus* foodMenus)

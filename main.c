@@ -29,6 +29,8 @@ int main() {
     {
         int nextMenu;
         sscanf(command,"%d", &nextMenu);
+        if(nextMenu == -1)
+            break;
         if(actualMenu.countSubmenus>=nextMenu)
         {
             if(nextMenu == 0)
@@ -48,7 +50,6 @@ int main() {
             menusWriting(actualMenu);
 
         }
-
     }
 
     freeAllDynamicAllocationMemory(&actualMenu,&foodMenus,&desktopArray,&actualRawMaterials);
@@ -95,23 +96,43 @@ void execute(UserType userType,char* mainCommand, char* arguments,FoodMenus* foo
         }
         else if(strcmp(firstCommand, "MDM") == 0)
         {
+            int cost;
             switch (secondCommand) {
-                case 1:  menuModifyAtFood(&foodMenus->DayMenu,Appetizer, arguments);
-                    printf("%s", foodMenus->DayMenu.appetizer);break;
-                case 2:  menuModifyAtFood(&foodMenus->DayMenu,MainCourse, arguments);break;
-                case 3:  menuModifyAtFood(&foodMenus->DayMenu,Cake, arguments);break;
-                case 4:  menuModifyAtPrice(&foodMenus->DayMenu,arguments);break;
+                case 1:
+                    menuModifyAtFood(&foodMenus->DayMenu,Appetizer, arguments);
+                    ;break;
+                case 2:
+                    menuModifyAtFood(&foodMenus->DayMenu,MainCourse, arguments);
+                    break;
+                case 3:
+                    menuModifyAtFood(&foodMenus->DayMenu,Cake, arguments);
+                    break;
+                case 4:
+                    sscanf(arguments,"%d",&cost);
+                    menuModifyAtPrice(&foodMenus->DayMenu,cost);
+                    break;
             }
-
+            saveFoodMenus(foodMenus,"menuByDay.txt","menuByWeek.txt","menuByDayMaterials.txt","menuByWeekMaterials.txt");
         }
         else if(strcmp(firstCommand, "MWM") == 0)
         {
+            int cost;
             switch (secondCommand) {
-                case 1:  menuModifyAtFood(&foodMenus->WeekMenu,Appetizer, arguments);break;
-                case 2:  menuModifyAtFood(&foodMenus->WeekMenu,MainCourse, arguments);break;
-                case 3:  menuModifyAtFood(&foodMenus->WeekMenu,Cake, arguments);break;
-                case 4:  menuModifyAtPrice(&foodMenus->WeekMenu,(int)arguments);break;
+                case 1:
+                    menuModifyAtFood(&foodMenus->WeekMenu,Appetizer, arguments);
+                    break;
+                case 2:
+                    menuModifyAtFood(&foodMenus->WeekMenu,MainCourse, arguments);
+                    break;
+                case 3:
+                    menuModifyAtFood(&foodMenus->WeekMenu,Cake, arguments);
+                    break;
+                case 4:
+                    sscanf(arguments,"%d",&cost);
+                    menuModifyAtPrice(&foodMenus->WeekMenu,cost)
+                    ;break;
             }
+            saveFoodMenus(foodMenus,"menuByDay.txt","menuByWeek.txt","menuByDayMaterials.txt","menuByWeekMaterials.txt");
         }
         else if(strcmp(firstCommand, "PM") == 0)
         {
@@ -151,15 +172,19 @@ void execute(UserType userType,char* mainCommand, char* arguments,FoodMenus* foo
                 printf(" %d db heti menüből nincs megfelelő mennyiségű alapanyag\n");
                 return;
             }
+
             desktopReservation(desktopArray,id,day,week, foodMenus->DayMenu.cost,foodMenus->WeekMenu.cost);
             for (int i = 0; i < foodMenus->DayMenu.rawMaterialArray.count; ++i)
                 reductionRawMaterial(actualRawMaterials, foodMenus->DayMenu.rawMaterialArray.rawMaterials[i],day);
             for (int i = 0; i < foodMenus->WeekMenu.rawMaterialArray.count; ++i)
                 reductionRawMaterial(actualRawMaterials, foodMenus->WeekMenu.rawMaterialArray.rawMaterials[i],week);
+            saveRawMaterials(actualRawMaterials,"actualRawMaterials.txt");
 
             dataProceeds->consumerCountWeek+=week;
             dataProceeds->consumerCountDay+=day;
             dataProceeds->proceeds=day+week;
+            saveDataProfit(dataProceeds,"dataProceeds.txt");
+
 
         }
         else if(strcmp(firstCommand, "DF") == 0)
