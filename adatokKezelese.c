@@ -2,7 +2,11 @@
 #include "debugmalloc.h"
 #include <stdio.h>
 #include <string.h>
-
+///
+/// \param array
+/// \param size
+/// \param c
+/// \return
 static char* dynamicAllocationMemoryCharPointer(char* array, int size, char* c)
 {
     char* newArray= (char*) malloc(sizeof(char*)*size);
@@ -15,7 +19,10 @@ static char* dynamicAllocationMemoryCharPointer(char* array, int size, char* c)
     return newArray;
 }
 
-
+///
+/// \param array
+/// \param size
+/// \param rawMaterial
 static void dynamicAllocationMemoryRawMaterial(RawMaterialArray *array, int size, RawMaterial rawMaterial)
 {
     RawMaterial* newData= (RawMaterial*) malloc(sizeof(RawMaterial)*size);
@@ -29,6 +36,10 @@ static void dynamicAllocationMemoryRawMaterial(RawMaterialArray *array, int size
     array->count = size;
 
 }
+///
+/// \param array
+/// \param size
+/// \param desktop
 static void dynamicAllocationMemoryDesktop(DesktopArray *array, int size, Desktop desktop)
 {
     Desktop* newData= (Desktop*) malloc(sizeof(Desktop)*size);
@@ -263,7 +274,8 @@ void saveDataProfit(DataProceeds const *dataProceeds, char const *filename)
 
     fclose(fp);
 }
-
+///
+/// \param menu
 static void freeMenu(Menu* menu)
 {
         for (int i = 0; i < menu->countSubmenus; ++i)
@@ -276,7 +288,8 @@ static void freeMenu(Menu* menu)
 
 
 }
-
+///
+/// \param foodMenus
 static void freeFoodMenus(FoodMenus* foodMenus)
 {
     free(foodMenus->DayMenu.rawMaterialArray.rawMaterials);

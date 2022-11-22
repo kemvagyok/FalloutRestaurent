@@ -11,6 +11,7 @@ int checkRawMaterial(RawMaterialArray* actualRawMaterials, RawMaterial rawMateri
             return i;
     return -1;
 }
+
 void reductionRawMaterial(RawMaterialArray* actualRawMaterials, RawMaterial rawMaterial, int count)
 {
     int index = checkRawMaterial(actualRawMaterials, rawMaterial);

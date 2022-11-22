@@ -17,6 +17,7 @@ void desktopReservation(DesktopArray* desktopArray, int ID, int countDayMenu, in
     }
     printf("NINCS TALÁLAT\n");
 }
+
 void desktopFree(DesktopArray* desktopArray, int ID)
 {
     for (int i = 0; i < desktopArray->desktopsCount; ++i) {
@@ -39,6 +40,7 @@ void desktopFree(DesktopArray* desktopArray, int ID)
     }
     printf("NINCS TALÁLAT\n");
 }
+
 int chairCountOfGivenDesktop(DesktopArray* desktopArray, int ID)
 {
     for (int i = 0; i < desktopArray->desktopsCount; ++i) {

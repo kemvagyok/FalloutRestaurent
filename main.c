@@ -5,9 +5,25 @@
 #include "alapanyagokKezelese.h"
 #include "asztalokKezelese.h"
 #include "kinezetKezeles.h"
-
+///Inializálja az adott alapvető vátlozókat a betöltött adatokkal.
+/// \param userType UserType típusú változú
+/// \param menuStart Menu típusú pointer
+/// \param foodMenus FoodMenus típusú pointer
+/// \param desktopArray DesktopArray típusú pointer
+/// \param rawMaterialArray RawMaterialArray típusú pointer
+/// \param dataProceeds DataProceeds típusú pointer
 void initailize(UserType userType,Menu* menuStart,FoodMenus* foodMenus, DesktopArray* desktopArray, RawMaterialArray* rawMaterialArray, DataProceeds* dataProceeds);
+///Itt történik a felhasználó által triggelt események kezelése.
+/// \param userType UserType típusú változó
+/// \param mainCommand char típusú pointer
+/// \param arguments char típusú pointer
+/// \param foodMenus FoodMenus típusú pointer
+/// \param desktopArray DesktopArray típusú pointer
+/// \param rawMaterialArray RawMaterialArray típusú pointer
+/// \param dataProceeds DataProceeds típusú pointer
 void execute(UserType userType,char* mainCommand, char* arguments,  FoodMenus* foodMenus, DesktopArray* desktopArray, RawMaterialArray* rawMaterialArray, DataProceeds* dataProceeds);
+///Kezeli a bejelentkezés eseményét.
+/// \param userType UserType típusú változó
 void login(UserType* userType);
 int main() {
     UserType userType;
@@ -55,16 +71,26 @@ int main() {
     freeAllDynamicAllocationMemory(&actualMenu,&foodMenus,&desktopArray,&actualRawMaterials);
     return 0;
 }
-
 void login(UserType* userType)
 {
-    printf("Bejelentkezés\nTulajdonos (Login O)\nDolgozó (Login W)\n");
+    printf("Bejelentkezés\nTulajdonos (Login T)\nDolgozó (Login D)\n");
     char type;
-    scanf("Login %c", &type);
-    if(type == 'O')
-        *userType = Owner;
-    else
-        *userType = Waiter;
+    while(scanf("Login %c", &type))
+    {
+        if(type == 'T')
+        {
+            *userType = Owner;
+            break;
+        }
+        else if(type == 'D')
+        {
+            *userType = Waiter;
+            break;
+        }
+        else{
+            printf("Nem megfelelő karaktert írt be.");
+        }
+    }
 }
 
 void initailize(UserType userType,Menu* menuStart,FoodMenus* foodMenus, DesktopArray* desktopArray, RawMaterialArray* rawMaterialArray, DataProceeds* dataProceeds)
